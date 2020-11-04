@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plus.feifei.feiblog.mapper.CommentMapper">
+    <resultMap id="commentMap" type="plus.feifei.feiblog.entity.Comment">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="userId" column="user_id"/>
+        <association property="user" javaType="plus.feifei.feiblog.entity.User">
+            <result property="avatar" column="avatar"/>
+            <result property="nickname" column="nickname"/>
+        </association>
+    </resultMap>
+
+    <select id="selectByBlogId" resultMap="commentMap">
+            SELECT
+            tc.`content`,tc.`create_time`,tu.`avatar`,tu.`nickname`
+             FROM t_comment tc LEFT JOIN t_user tu ON tc.`user_id`=tu.`id` WHERE tc.`blog_id`=#{blogId} order by tc.create_time desc
+    </select>
+
+</mapper>

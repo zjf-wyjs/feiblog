@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plus.feifei.feiblog.mapper.TagMapper">
+    <resultMap id="tagMap" type="tag">
+        <id property="tagId" column="tag_id"/>
+        <result property="tagName" column="tag_name"/>
+        <collection property="blogs" ofType="int">
+            <id column="blogs_id"/>
+        </collection>
+    </resultMap>
+    <select id="selectAll" resultMap="tagMap">
+        SELECT *FROM t_tag tt LEFT JOIN t_blog_tags tbs ON tt.`tag_id`=tbs.tags_id
+    </select>
+
+</mapper>

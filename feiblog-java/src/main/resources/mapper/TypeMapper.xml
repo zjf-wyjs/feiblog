@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plus.feifei.feiblog.mapper.TypeMapper">
+    <resultMap id="typeMap" type="plus.feifei.feiblog.entity.Type">
+        <id property="typeId" column="type_id"/>
+        <result property="typeName" column="type_name"/>
+        <collection property="blogs" ofType="int">
+            <id column="id"/>
+        </collection>
+    </resultMap>
+    <select id="selectAll" resultMap="typeMap">
+        SELECT
+        *
+        FROM t_type tt LEFT JOIN t_blog tb ON tt.type_id=tb.`type_id`
+    </select>
+
+</mapper>

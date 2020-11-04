@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: pro
+  servlet:
+    multipart:
+      max-file-size: 1024000000
+  jackson:
+    default-property-inclusion: non_null
+mybatis-plus:
+  type-aliases-package: plus.feifei.feiblog.entity
+
+feiblog:
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长，7天，单位秒
+    expire: 60480
+    header: Authorization
+
